@@ -29,7 +29,7 @@ namespace WebApp5.Models
         [Required]
         public string Category { get; set; }
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(18,2)")] //specify the decimal field 
         public decimal Price { get; set; }
     }
 }

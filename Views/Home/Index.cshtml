@@ -24,7 +24,7 @@
         <tbody>
             @foreach (var book in Model)
             {
-                <tr>
+                <tr> @*Format this correctly so that it displays the author name in a nice way*@
                     <td>@book.Title</td>
                     <td>@book.AuthorFirst 
                         @if(System.String.IsNullOrEmpty(book.AuthorMiddle))
@@ -33,7 +33,7 @@
                         }
                         else
                         {
-                            if(book.AuthorMiddle.Length == 1)
+                            if(book.AuthorMiddle.Length == 1) @* if the author only has a middle initial, then it will render as the initial with a period *@
                             {
                                 @:@book.AuthorMiddle.
                             }

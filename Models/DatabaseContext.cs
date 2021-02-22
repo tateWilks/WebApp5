@@ -10,7 +10,7 @@ namespace WebApp5.Models
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base (options)
         {
-
+            //just a context class. that's all it is.
         }
 
         public DbSet<Book> Books { get; set; }

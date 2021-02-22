@@ -17,12 +17,12 @@ namespace WebApp5.Controllers
         public HomeController(ILogger<HomeController> logger, IBookRepository repository)
         {
             _logger = logger;
-            _repository = repository;
+            _repository = repository; //going to get the book repository and set it equal to the _repository variable
         }
 
         public IActionResult Index()
         {
-            return View(_repository.Books);
+            return View(_repository.Books); //return the view with the book repo
         }
 
         public IActionResult Privacy()

@@ -59,7 +59,7 @@ namespace WebApp5
             { //change this a bit to make things nicer
                 endpoints.MapControllerRoute(
                     "pagination",
-                    "Books/{page}",
+                    "Books/P{page}", //change this so you can enter this in the URL to request a page and its number
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();

@@ -14,7 +14,7 @@ namespace WebApp5.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IBookRepository _repository;
-        public int PageSize = 2; //create a public items page variable
+        public int PageSize = 5; //create a public items page variable
 
         public HomeController(ILogger<HomeController> logger, IBookRepository repository)
         {

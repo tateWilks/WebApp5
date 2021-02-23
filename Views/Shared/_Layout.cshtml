@@ -10,7 +10,7 @@
 <body class="bg-secondary text-light">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">                
+            <div class="container-fluid">
                 <a class="navbar-brand" href="#">Bookstore</a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
@@ -23,11 +23,20 @@
         </nav>
     </header>
 
-    @RenderBody()
+    <div class="row m-1 p-1">
+        <div class="text-center col-3 align-middle">
+            <h1 class="display-4">Bookstore</h1>
+            <p class="h6">Please feel free to browse the library</p>
+        </div>
+
+        <div class="col-9">
+            @RenderBody()
+        </div>
+    </div>
 
     <footer class="footer bg-dark">
         <div class="container">
-            <span class="text-muted">&copy;2021 ProfHilton Assignments</span>  
+            <span class="text-muted">&copy;2021 ProfHilton Assignments</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

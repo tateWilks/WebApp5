@@ -32,7 +32,8 @@ namespace WebApp5.Models
                         ISBN = "978-0451419439",
                         Classification = "Fiction",
                         Category = "Classic",
-                        Price = 9.95M
+                        Price = 9.95M,
+                        NumPages = 1488
                     },
 
                     new Book
@@ -45,7 +46,8 @@ namespace WebApp5.Models
                         ISBN = "978-0743270755",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 14.58M
+                        Price = 14.58M,
+                        NumPages = 944
                     },
 
                     new Book
@@ -57,7 +59,8 @@ namespace WebApp5.Models
                         ISBN = "978-0553384611",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 21.54M
+                        Price = 21.54M,
+                        NumPages = 832
                     },
 
                     new Book
@@ -70,7 +73,8 @@ namespace WebApp5.Models
                         ISBN = "978-0812981254",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 11.61M
+                        Price = 11.61M,
+                        NumPages = 864
                     },
 
                     new Book
@@ -82,7 +86,8 @@ namespace WebApp5.Models
                         ISBN = "978-0812974492",
                         Classification = "Non-Fiction",
                         Category = "Historical",
-                        Price = 13.33M
+                        Price = 13.33M,
+                        NumPages = 528
                     },
 
                     new Book
@@ -94,7 +99,8 @@ namespace WebApp5.Models
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
                         Category = "Historical Fiction",
-                        Price = 15.95M
+                        Price = 15.95M,
+                        NumPages = 288
                     },
 
                     new Book
@@ -106,7 +112,8 @@ namespace WebApp5.Models
                         ISBN = "978-1455586691",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 14.99M
+                        Price = 14.99M,
+                        NumPages = 304
                     },
 
                     new Book
@@ -118,7 +125,8 @@ namespace WebApp5.Models
                         ISBN = "978-1455523023",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 21.66M
+                        Price = 21.66M,
+                        NumPages = 240
                     },
 
                     new Book
@@ -130,7 +138,8 @@ namespace WebApp5.Models
                         ISBN = "978-1591847984",
                         Classification = "Non-Fiction",
                         Category = "Business",
-                        Price = 29.16M
+                        Price = 29.16M,
+                        NumPages = 400
                     },
 
                     new Book
@@ -142,7 +151,45 @@ namespace WebApp5.Models
                         ISBN = "978-0553393613",
                         Classification = "Fiction",
                         Category = "Thrillers",
-                        Price = 15.03M
+                        Price = 15.03M,
+                        NumPages = 642
+                    },
+                    new Book //my three books
+                    {
+                        Title = "Ender's Game",
+                        AuthorFirst = "Orson",
+                        AuthorMiddle = "Scott",
+                        AuthorLast = "Card",
+                        Publisher = "Tor Science Fiction",
+                        ISBN = "978-0812550702",
+                        Classification = "Fiction",
+                        Category = "Science Fiction",
+                        Price = 7.99M,
+                        NumPages = 352
+                    },
+                    new Book
+                    {
+                        Title = "1984",
+                        AuthorFirst = "George",
+                        AuthorLast = "Orwell",
+                        Publisher = "Berkley",
+                        ISBN = "978-0452284234",
+                        Classification = "Fiction",
+                        Category = "Fiction",
+                        Price = 14.99M,
+                        NumPages = 368
+                    },
+                    new Book
+                    {
+                        Title = "The Things They Carried",
+                        AuthorFirst = "Tim",
+                        AuthorLast = "O'Brien",
+                        Publisher = "Mariner Books",
+                        ISBN = "978-0544309760",
+                        Classification = "Fiction",
+                        Category = "Historical Fiction",
+                        Price = 11.21M,
+                        NumPages = 233
                     }
                 );
                 //save the changes into the repository

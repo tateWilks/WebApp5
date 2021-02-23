@@ -27,21 +27,54 @@ namespace WebApp5.Infrastructure
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+        public string ListItemClass { get; set; }
+        public string ListClass { get; set; }
+        public string DivClass { get; set; }
+
         //Overriding - replace a method with our own information
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper urlHelper = _UrlHelperFactory.GetUrlHelper(ViewContext);
 
+            //create the div
             TagBuilder result = new TagBuilder("div");
+
+            //create the ul
+            TagBuilder List = new TagBuilder("ul");
 
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a"); //we're creating html through c# - similar to creating nodes or children in js
                 tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+                
+                //create the list item
+                TagBuilder ListItem = new TagBuilder("li");
+                
+                if (PageClassesEnabled)
+                {
+                    tag.AddCssClass(PageClass);
+                    tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
+                    
+                    ListItem.AddCssClass(ListItemClass); //add the class we need
+                }
+
                 tag.InnerHtml.Append(i.ToString());
 
-                result.InnerHtml.AppendHtml(tag);
+                //add the a tag to the li tag
+                ListItem.InnerHtml.AppendHtml(tag);
+                //add the li to the ul
+                List.InnerHtml.AppendHtml(ListItem);
             }
+
+            List.AddCssClass(ListClass);
+            result.AddCssClass(DivClass);
+
+            //add the ul to the div
+            result.InnerHtml.AppendHtml(List);
 
             output.Content.AppendHtml(result.InnerHtml); //eventually we can go to Index 1, then Index 2, Index 3 and so on to make our pages work
         }

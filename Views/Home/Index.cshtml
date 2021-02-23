@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home";
 }
 
-@model IQueryable<Book> 
+@model BookListViewModel 
 
 <div class="container text-center">
     <h1 class="display-4">Bookstore</h1>
@@ -22,33 +22,37 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var book in Model)
+            @foreach (var book in Model.Books)@*Now we add a .Books at the end of it*@
             {
-                <tr> @*Format this correctly so that it displays the author name in a nice way*@
+                <tr>
+                    @*Format this correctly so that it displays the author name in a nice way*@
                     <td>@book.Title</td>
-                    <td>@book.AuthorFirst 
-                        @if(System.String.IsNullOrEmpty(book.AuthorMiddle))
+                    <td>
+                        @book.AuthorFirst
+                    @if (System.String.IsNullOrEmpty(book.AuthorMiddle))
+                    {
+                        @:
+                    }
+                    else
+                    {
+                        if (book.AuthorMiddle.Length == 1) @* if the author only has a middle initial, then it will render as the initial with a period *@
                         {
-                            @: 
+                            @:@book.AuthorMiddle.
                         }
                         else
                         {
-                            if(book.AuthorMiddle.Length == 1) @* if the author only has a middle initial, then it will render as the initial with a period *@
-                            {
-                                @:@book.AuthorMiddle.
-                            }
-                            else
-                            {
-                                @book.AuthorMiddle;
-                            }                           
-                        } @book.AuthorLast</td>
-                    <td>@book.Publisher</td>
-                    <td>@book.ISBN</td>
-                    <td>@book.Classification</td>
-                    <td>@book.Category</td>
-                    <td>$@book.Price</td>
-                </tr>
-            }
+                            @book.AuthorMiddle;
+                        }
+                    } @book.AuthorLast
+                </td>
+                <td>@book.Publisher</td>
+                <td>@book.ISBN</td>
+                <td>@book.Classification</td>
+                <td>@book.Category</td>
+                <td>$@book.Price</td>
+            </tr>
+        }
         </tbody>
     </table>
+    <div page-model="@Model.PagingInfo" page-action="Index"></div>
 </div>

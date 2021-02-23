@@ -56,10 +56,13 @@ namespace WebApp5
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
+            { //change this a bit to make things nicer
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination",
+                    "Books/{page}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
             });
 
             SeedData.EnsurePopulated(app);

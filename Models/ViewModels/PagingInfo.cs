@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp5.Models.ViewModels
 {
-    public class PagingInfo
+    public class PagingInfo //bundle info to pass to the view
     {
         //need to make the page changes a more automatic process - store it dynamically
         public int TotalNumItems { get; set; }

@@ -41,6 +41,7 @@ namespace WebApp5.Controllers
             });
         }
 
+        //this was what we did earlier, now we order them as above
         /*public IActionResult Index(int page = 1) //pass it to the index view -> ?page=2 in the URL can navigate for us
         {
             return View(

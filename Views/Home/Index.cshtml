@@ -5,7 +5,7 @@
 @model BookListViewModel 
 
 
-<div class="card text-left bg-dark text-light">
+<div class="card text-left bg-dark text-light"> @*had more fun with this and created a div that made a div with tab navigation instead of buttons, just for fun*@
     <div page-model="@Model.PagingInfo" 
          page-action="Index" 
          page-classes-enabled="true" 
@@ -24,7 +24,7 @@
                 <div class="card bg-dark p-2 m-2" style="width: 22rem">
                     <div class="card-body">
                         <h5 class="card-title">@book.Title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
+                        <h6 class="card-subtitle mb-2 text-muted"> @*I'm going to build a card for each book and have it in a wrapped grid display*@
                             @book.AuthorFirst
                             @if (System.String.IsNullOrEmpty(book.AuthorMiddle))
                             {@:

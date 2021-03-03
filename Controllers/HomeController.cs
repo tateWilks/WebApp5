@@ -36,10 +36,12 @@ namespace WebApp5.Controllers
                     {
                         CurrentPage = page,
                         ItemsPerPage = PageSize,
-                        TotalNumItems = _repository.Books.Count()
+                        TotalNumItems = category == null ?
+                            _repository.Books.Count() : //if the category is null, grab everything for total items. 
+                            _repository.Books.Where(b => b.Category == category).Count() //otherwise, only get the item count for books that have a category equal to the category passed in
                     },
                     CurrentCategory = category
-            });
+            });;
         }
 
         //this was what we did earlier, now we order them as above

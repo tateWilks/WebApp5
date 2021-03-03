@@ -29,6 +29,9 @@ namespace WebApp5.Infrastructure
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")] //anytime someone enters "page-url-something", we will enter that into the dictionary
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>(); //create a dictionary that stores a string key to an object value
+
         //for the classes
         public bool PageClassesEnabled { get; set; } = false;
         public string PageClass { get; set; }
@@ -52,7 +55,13 @@ namespace WebApp5.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a"); //we're creating html through c# - similar to creating nodes or children in js
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+
+                PageUrlValues["page"] = i;
+
+                tag.Attributes["href"] = urlHelper.Action(
+                    PageAction, 
+                    PageUrlValues //can store stuff in the dictionary to build a specific endpoint
+                );
                 
                 //create the list item
                 TagBuilder ListItem = new TagBuilder("li");

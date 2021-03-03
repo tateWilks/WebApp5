@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+@* needs to be located in Shared/Components/NavigationMenu *@
+
+<a class="btn btn-block btn-dark btn-outline-dark text-light" asp-action="Index" asp-controller="Home" asp-route-category="">Home</a>
+
+@foreach (string category in Model)
+{
+    <a class="btn btn-block @(category == ViewBag.SelectedCategory ? "btn-light text-dark btn-outline-light" : " btn-dark btn-outline-dark text-light")"
+       asp-action="Index" 
+       asp-controller="Home" 
+       asp-route-category="@category"
+       asp-route-page="1">
+            @category
+    </a>
+}

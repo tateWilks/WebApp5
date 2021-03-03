@@ -12,6 +12,6 @@ namespace WebApp5.Models.ViewModels
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }
 
-        public int TotalPages => (int)(Math.Ceiling((decimal) TotalNumItems / ItemsPerPage)); //cast to decimal, divide, round up, cast back to int
+        public int TotalPages => (int)(Math.Ceiling((decimal) TotalNumItems / ItemsPerPage)); //cast to decimal, divide, round up, cast back to int - use a lambda to make sure that the instance can change - don't want to be stuck with just one value
     }
 }

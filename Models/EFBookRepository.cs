@@ -13,7 +13,7 @@ namespace WebApp5.Models
         {
             _context = context;
         }
-        public IQueryable<Book> Books => _context.Books; //lambda makes the Books equal to the DbSet (?)
+        public IQueryable<Book> Books => _context.Books; //lambda does something where the variable constantly updates - GOOGLE THIS - it makes an anonymous function - don't want a static instance
 
     }
 }

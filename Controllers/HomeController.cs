@@ -23,21 +23,22 @@ namespace WebApp5.Controllers
         }
 
         //new dynamic Index controller
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, int page = 1)
         {
-            return View(new BookListViewModel 
+            return View(new BookListViewModel //BookListViewModel has two attributes : IEnumerable<Books> and PagingInfo -> we create that here with Books = _repository.Books and PagingInfo = new PagingInfo{ passing values to a constructor }
                 { 
                     Books = _repository.Books
+                        .Where(c => category == null || c.Category == category) //this statement says that we want to filter the data where the category is null or where the category is the category passed in
                         .OrderBy(b => b.BookID)
                         .Skip((page - 1) * PageSize)
-                        .Take(PageSize)
-                    ,
+                        .Take(PageSize),
                     PagingInfo = new PagingInfo
                     {
                         CurrentPage = page,
                         ItemsPerPage = PageSize,
                         TotalNumItems = _repository.Books.Count()
-                    }
+                    },
+                    CurrentCategory = category
             });
         }
 

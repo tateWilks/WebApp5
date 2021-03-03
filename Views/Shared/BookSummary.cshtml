@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* This partial view is just breaking things down into smaller bits. We can pass a model into the view through the "model" parameter in the <partial> tag in Index.cshtml *@
+@* This is similar to breaking down components in React to create HTML elements *@
+
+@model Book
+
+<div class="card bg-dark p-2 m-2" style="width: 22rem">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            @*I'm going to build a card for each book and have it in a wrapped grid display*@
+            @Model.AuthorFirst
+            @if (System.String.IsNullOrEmpty(Model.AuthorMiddle))
+            {@:
+            }
+            else
+            {
+                if (Model.AuthorMiddle.Length == 1)
+                {
+                    @:@Model.AuthorMiddle.
+                }
+                else
+                {
+                    @Model.AuthorMiddle
+                }
+            } @Model.AuthorLast
+        </h6>
+        <p class="card-text">Publisher: @Model.Publisher</p>
+        <p class="card-text">ISBN: @Model.ISBN</p>
+        <table class="table table-dark text-center">
+            <thead>
+                <tr>
+                    <th>Classification</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Classification</td>
+                    <td>@Model.Category</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="card-text">Price: $@Model.Price</p>
+        <p class="card-text">Page Count: @Model.NumPages</p>
+    </div>
+</div> 

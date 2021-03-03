@@ -25,14 +25,15 @@ namespace WebApp5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); // allows us to create our own endpoints by using the controller
 
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:WebApp5Connection"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:WebApp5Connection"]); //this is going to connect us to a database
             });
 
-            services.AddScoped<IBookRepository, EFBookRepository>(); //give people their own scope for what's happening
+            services.AddScoped<IBookRepository, EFBookRepository>(); //give people their own scope for what's happening When we register a type as Scoped, one instance is available throughout the application per request. When a new request comes in, the new instance is created. Add scoped specifies that a single object is available per request.
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +58,22 @@ namespace WebApp5
 
             app.UseEndpoints(endpoints =>
             { //change this a bit to make things nicer
-                endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute( //for if they enter a category AND a page
+                    "categorypage",
+                    "{category}/P{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute( //for when they just want a page
+                    "page",
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute( //for when they want to enter just a category - for spaces do "%20"
+                    "category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1});
+
+                endpoints.MapControllerRoute( //for when they want to do book categories
                     "pagination",
                     "Books/P{page}", //change this so you can enter this in the URL to request a page and its number
                     new { Controller = "Home", action = "Index" });

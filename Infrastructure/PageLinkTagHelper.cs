@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp5.Models.ViewModels;
+//in order to have this work, we add @addtaghelper to the _ViewImports.cshtml
+//tag helpers look like "asp-for"
 
 namespace WebApp5.Infrastructure
 {

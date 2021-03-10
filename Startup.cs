@@ -29,7 +29,7 @@ namespace WebApp5
 
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:WebApp5Connection"]); //this is going to connect us to a database
+                options.UseSqlite(Configuration["ConnectionStrings:WebApp5Connection"]); //this is going to connect us to a database
             });
 
             services.AddScoped<IBookRepository, EFBookRepository>(); //give people their own scope for what's happening When we register a type as Scoped, one instance is available throughout the application per request. When a new request comes in, the new instance is created. Add scoped specifies that a single object is available per request.
@@ -51,6 +51,22 @@ namespace WebApp5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //these next two app settings will protect against xss and enable certificate pinning
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Xss-Protection", "1");
+                await next();
+            });
+
+            app.UseHsts();
+
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy",
+                "default-src 'self'");
+                await next();
+            });
 
             app.UseRouting();
 

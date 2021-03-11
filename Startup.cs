@@ -34,6 +34,10 @@ namespace WebApp5
 
             services.AddScoped<IBookRepository, EFBookRepository>(); //give people their own scope for what's happening When we register a type as Scoped, one instance is available throughout the application per request. When a new request comes in, the new instance is created. Add scoped specifies that a single object is available per request.
 
+            services.AddRazorPages(); //need to add razor pages
+
+            services.AddDistributedMemoryCache(); //need these two services to make the information stick
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +55,8 @@ namespace WebApp5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession(); //sets up the session for us on startup
 
             //these next two app settings will protect against xss and enable certificate pinning
             app.Use(async (context, next) =>
@@ -95,6 +101,8 @@ namespace WebApp5
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages(); //need to route to razor pages
             });
 
             SeedData.EnsurePopulated(app);

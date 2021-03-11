@@ -1,0 +1,31 @@
+﻿@page
+@model WebApp5.Pages.CheckoutModel
+@{
+}
+
+@* This is self contained, so whenever you type in the name in the URL it will render this page *@
+@* known as an MVVM - Model View View Model *@
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th class="text-right">Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines) 
+        {
+            <tr>
+                <td>@line.Book.Title</td>
+                <td>@line.Quantity</td>
+                <td>@line.Book.Price</td>
+                <td class="text-right">$@(line.Quantity * line.Book.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>

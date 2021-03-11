@@ -21,11 +21,23 @@
         @foreach (var line in Model.Cart.Lines) 
         {
             <tr>
-                <td>@line.Book.Title</td>
-                <td>@line.Quantity</td>
-                <td>@line.Book.Price</td>
-                <td class="text-right">$@(line.Quantity * line.Book.Price)</td>
+                <td class="text-left">@line.Book.Title</td>
+                <td class="text-center">@line.Quantity</td>
+                <td class="text-right">@line.Book.Price.ToString("c")</td>
+                <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
             </tr>
         }
-    </tbody>
+    </tbody>    
+    <tfoot>
+        <tr>
+            <td colspan="3" style="font-weight:bold" class="text-right">Total</td>
+            <td style="font-weight:bold"class="text-right">@Model.Cart.ComputeTotalSum().ToString("c")</td>
+        </tr>
+    </tfoot>
 </table>
+
+<div class="container">
+    <div class="text-center">
+        <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+    </div>
+</div>

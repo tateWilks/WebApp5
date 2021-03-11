@@ -78,26 +78,26 @@ namespace WebApp5
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            { //change this a bit to make things nicer
+            app.UseEndpoints(endpoints => //change this a bit to make things nicer
+            { 
                 endpoints.MapControllerRoute( //for if they enter a category AND a page
-                    "categorypage",
-                    "{category}/P{page:int}",
+                    "categorypage", //this is just the name of the route, it can be anything 
+                    "{category}/P{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute( //for when they just want a page
                     "page",
-                    "{page:int}",
+                    "{pageNum:int}", //page is a reserved word, you can't use it
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute( //for when they want to enter just a category - for spaces do "%20"
                     "category",
                     "{category}",
-                    new { Controller = "Home", action = "Index", page = 1});
+                    new { Controller = "Home", action = "Index", pageNum = 1});
 
                 endpoints.MapControllerRoute( //for when they want to do book categories
                     "pagination",
-                    "Books/P{page}", //change this so you can enter this in the URL to request a page and its number
+                    "Books/P{pageNum}", //change this so you can enter this in the URL to request a page and its number
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();

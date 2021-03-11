@@ -56,7 +56,7 @@ namespace WebApp5.Infrastructure
             {
                 TagBuilder tag = new TagBuilder("a"); //we're creating html through c# - similar to creating nodes or children in js
 
-                PageUrlValues["page"] = i;
+                PageUrlValues["pageNum"] = i;
 
                 tag.Attributes["href"] = urlHelper.Action(
                     PageAction, 

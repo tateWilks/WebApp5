@@ -3,7 +3,7 @@ using WebApp5.Models;
 
 namespace WebApp5.Components
 {
-    public class CartSummaryViewComponent : ViewComponent
+    public class CartSummaryViewComponent : ViewComponent //create another component to view just the little bit of html we wanna generate for the cart info
     {
         private Cart cart;
         public CartSummaryViewComponent(Cart cartService)

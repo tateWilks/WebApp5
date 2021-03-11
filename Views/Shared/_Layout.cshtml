@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] | Bookstore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body class="bg-secondary text-light">
     <header>@*header with stuff in it - navigation and stuff*@
@@ -18,6 +19,9 @@
                             <a href="#" class="nav-link">Home</a>
                         </li>
                     </ul>
+                </div>
+                <div class="text-right">
+                    <vc:cart-summary />
                 </div>
             </div>
         </nav>

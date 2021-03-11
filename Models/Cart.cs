@@ -9,7 +9,7 @@ namespace WebApp5.Models
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Book bk, int qty)
+        public virtual void AddItem(Book bk, int qty)
         {
             CartLine line = Lines.Where(b => b.Book.BookID == bk.BookID).FirstOrDefault();
             //go out to the Lines where b.Book.BookID (see if it's already there), and then see if that's the same as the bk.BookID, get the first one you find
@@ -28,9 +28,9 @@ namespace WebApp5.Models
             }
         }
 
-        public void RemoveLine(Book bk) => Lines.RemoveAll(b => b.Book.BookID == bk.BookID); //removes all items where the current ID is equal to the Book ID
+        public virtual void RemoveLine(Book bk) => Lines.RemoveAll(b => b.Book.BookID == bk.BookID); //removes all items where the current ID is equal to the Book ID
 
-        public void Clear() => Lines.Clear(); //removes all line items
+        public virtual void Clear() => Lines.Clear(); //removes all line items
 
         public decimal ComputeTotalSum() => Lines.Sum(e => e.Book.Price * e.Quantity); //gives the total price
 

@@ -14,7 +14,7 @@
             <th>Book</th>
             <th>Quantity</th>
             <th class="text-right">Price</th>
-            <th>Subtotal</th>
+            <th colspan="2">Subtotal</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +25,26 @@
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-right">@line.Book.Price.ToString("c")</td>
                 <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
+                <td>
+                    @*<form id="@line.Book.BookID" asp-page="/checkout" method="post">
+            <input type="hidden" asp-for="@line.Book.BookID" />
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <span class="card-text p-1">
+                <button type="submit" class="btn-success btn-sm" style="text-align:center">
+                    Add to Cart
+                </button>
+            </span>
+        </form>*@
+                    <form asp-page-handler="Remove" method="post">
+                        <input type="hidden" name="BookID"
+                               value="@line.Book.BookID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Remove
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>    
